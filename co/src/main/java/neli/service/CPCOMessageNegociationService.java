@@ -1,4 +1,4 @@
-package neli.camel;
+package neli.service;
 
 import neli.model.CPCOMessageNegotiation;
 import org.apache.camel.Handler;

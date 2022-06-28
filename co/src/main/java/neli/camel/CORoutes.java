@@ -1,6 +1,7 @@
 package neli.camel;
 
 import neli.model.CPCOMessageNegotiation;
+import neli.service.CPCOMessageNegociationService;
 import org.apache.camel.builder.RouteBuilder;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
