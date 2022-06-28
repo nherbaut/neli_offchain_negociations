@@ -24,8 +24,25 @@ this will trigger docker compose to create the Kafka/Zookeeper broker and 3 quar
 
 The CP accepts POST on its /content path to initiate negociation:
 
-`curl -H "Content-type: application/json" -X POST localhost:8082/content -d '{"contentId":18,"price":10}' -v`
+```bash
+curl -H "Content-type: application/json" -X POST localhost:8082/content -d '{"contentId":18,"price":10}' -v -s
+*   Trying 127.0.0.1...
+* TCP_NODELAY set
+* Connected to localhost (127.0.0.1) port 8082 (#0)
+> POST /content HTTP/1.1
+> Host: localhost:8082
+> User-Agent: curl/7.58.0
+> Accept: */*
+> Content-type: application/json
+> Content-Length: 27
+> 
+* upload completely sent off: 27 out of 27 bytes
+< HTTP/1.1 202 Accepted
+< content-length: 0
+< 
+* Connection #0 to host localhost left intact
 
+```
 Sucessful negociations are visible in the /negotiation endpoint
 
 ```bash
