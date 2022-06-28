@@ -20,6 +20,27 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
       - zookeeper
+  cp:
+    image: nherbaut/cp:1.0.0-SNAPSHOT
+    ports: 
+      - "8082:8082"
+    environment:
+      - CAMEL_COMPONENT_KAFKA_BROKERS=PLAINTEXT://kafka:9092
+    depends_on:
+      - kafka
+  co:
+    image: nherbaut/co:1.0.0-SNAPSHOT
+    environment:
+      - CAMEL_COMPONENT_KAFKA_BROKERS=PLAINTEXT://kafka:9092
+    depends_on:
+      - kafka
+  sp:
+    image: nherbaut/sp:1.0.0-SNAPSHOT
+    environment:
+      - CAMEL_COMPONENT_KAFKA_BROKERS=PLAINTEXT://kafka:9092
+    depends_on:
+      - kafka
+
 
 volumes:
   zookeeper_data:

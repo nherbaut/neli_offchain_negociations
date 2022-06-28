@@ -14,6 +14,9 @@ public class CPSPNegociationService {
     @Inject
     MessageGateway messageGateway;
 
+    @Inject
+    CPNegotiationService cpNegotiationService;
+
     /**
      * send a proposal to the SP containing the previously negiciated contract with the CO
      *
@@ -34,7 +37,7 @@ public class CPSPNegociationService {
         //this is where we handle the response from the SP.
         //for the moment, if the agreement is declined, we just increase the price and resubmit
         if (cpspMessageNegotiation.isSpAgreed() && cpspMessageNegotiation.isCpAgreed()) {
-            messageGateway.writeTripleContract(cpspMessageNegotiation);
+            cpNegotiationService.addSuccessfulNegotiation(cpspMessageNegotiation);
         } else {
             this.sendProposalToSP(cpspMessageNegotiation.getCpcoMessageNegotiation(), cpspMessageNegotiation.getPrice() + 1.0);
         }
