@@ -2,7 +2,9 @@
 
 We have 3 organizations co, cp and sp. These 3 organizations exchange messages asynchronously through a kafka broker. The goal for these organizations is to negociate a distribution contract.
 
-![](doc/img/architecture.png)
+![Component view](doc/img/architecture.png)
+
+![Logical Data exchange, negotiation phases](doc/img/logical-architecture.png)
 
 # Prerequisites
 
