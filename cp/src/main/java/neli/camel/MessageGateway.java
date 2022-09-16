@@ -14,7 +14,7 @@ import javax.inject.Inject;
  * this class wraps the messaging layer from the application
  */
 @ApplicationScoped
-public class MessageGateway {
+public class  MessageGateway {
 
     @Inject
     ProducerTemplate template;
@@ -31,7 +31,6 @@ public class MessageGateway {
     public void sendMessageCO(CPCOMessageNegotiation message) {
         Exchange exchange = ExchangeBuilder.anExchange(context).withBody(message).build();
         template.send("direct://co-in", exchange);
-
     }
 
     /**

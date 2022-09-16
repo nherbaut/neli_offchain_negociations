@@ -33,14 +33,11 @@ public class CPNegotiationService {
     public void processNegotiationTrigger(CPNegociationTrigger trigger) {
 
         //do something with the trigger
-        CPCOMessageNegotiation coInboundMessage = new CPCOMessageNegotiation(trigger.getContentId(), trigger.getPrice(), true, false);
+        CPCOMessageNegotiation coInboundMessage = new CPCOMessageNegotiation(trigger.getContentID(), trigger.getOwner(), trigger.getPrice(), true, false);
         gateway.sendMessageCO(coInboundMessage);
-
     }
 
     public void addSuccessfulNegotiation(CPSPMessageNegotiation negotiation) {
         this.negotiations.add(negotiation);
     }
-
-
 }

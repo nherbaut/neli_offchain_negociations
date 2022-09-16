@@ -1,19 +1,26 @@
 package neli.model;
 
 public class CPNegociationTrigger {
-    String contentId;
+    String contentID;
+    String owner;
     double price;
 
     public CPNegociationTrigger() {
     }
 
-    public String getContentId() {
-        return contentId;
+    public String getContentID() {
+        return contentID;
     }
 
-    public void setContentId(String contentId) {
-        this.contentId = contentId;
+    public void setContentID(String contentID) {
+        this.contentID = contentID;
     }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) { this.owner = owner; }
 
     public double getPrice() {
         return price;
@@ -23,8 +30,9 @@ public class CPNegociationTrigger {
         this.price = price;
     }
 
-    public CPNegociationTrigger(String contentId, double price) {
-        this.contentId = contentId;
+    public CPNegociationTrigger(String contentID, String owner, double price) {
+        this.contentID = contentID;
+        this.owner = owner;
         this.price = price;
     }
 }

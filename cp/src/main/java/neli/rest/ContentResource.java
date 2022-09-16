@@ -25,7 +25,6 @@ public class ContentResource {
     public Response negociateContent(CPNegociationTrigger trigger) {
         cpService.processNegotiationTrigger(trigger);
         return Response.accepted().build();
-
     }
 
     @Path("negotiations")

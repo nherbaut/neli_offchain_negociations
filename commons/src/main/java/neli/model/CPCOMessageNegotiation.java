@@ -1,7 +1,8 @@
 package neli.model;
 
 public class CPCOMessageNegotiation {
-    String contentId;
+    String contentID;
+    String owner;
     double price;
     boolean cpAgreed;
     boolean coAgreed;
@@ -10,20 +11,25 @@ public class CPCOMessageNegotiation {
     public CPCOMessageNegotiation() {
     }
 
-    public CPCOMessageNegotiation(String contentId, double price, boolean cpAgreed, boolean coAgreed) {
-        this.contentId = contentId;
+    public CPCOMessageNegotiation(String contentID, String owner, double price, boolean cpAgreed, boolean coAgreed) {
+        this.contentID = contentID;
+        this.owner = owner;
         this.price = price;
         this.cpAgreed = cpAgreed;
         this.coAgreed = coAgreed;
     }
 
-    public String getContentId() {
-        return contentId;
+    public String getContentID() {
+        return contentID;
     }
 
-    public void setContentId(String contentId) {
-        this.contentId = contentId;
+    public void setContentID(String contentID) {
+        this.contentID = contentID;
     }
+
+    public String getOwner() { return owner; }
+
+    public void setOwner(String owner) { this.owner = owner; }
 
     public double getPrice() {
         return price;
@@ -36,9 +42,10 @@ public class CPCOMessageNegotiation {
     @Override
     public String toString() {
         return "COInboundMessage{" +
-                "contentId='" + contentId + '\'' +
-                ", price=" + price +
-                '}';
+                "contentID='" + contentID + '\'' +
+                ", owner='" + owner + '\'' +
+                ", price='" + price + '\'' +
+                "}";
     }
 
     public boolean isCpAgreed() {

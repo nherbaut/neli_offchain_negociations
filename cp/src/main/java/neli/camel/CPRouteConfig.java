@@ -22,8 +22,8 @@ public class CPRouteConfig extends RouteBuilder {
     @ConfigProperty(name = "neli.message.sp.inbox")
     String spInboxAddress;
 
-    @ConfigProperty(name = "neli.message.cp.outbox")
-    String finalContractOutbox;
+    /* @ConfigProperty(name = "neli.message.cp.outbox")
+    String finalContractOutbox; */
 
     @Inject
     CPCONegiciationService cpcoNegiciationService;
@@ -47,10 +47,10 @@ public class CPRouteConfig extends RouteBuilder {
                 .log("sending message ${body} to sp")
                 .to(spInboxAddress);//send it to sp
 
-        from("direct://final-contract")
+        /* from("direct://final-contract")
                 .marshal().json()
                 .log("writing the final contract to disk ${body}")
-                .to(finalContractOutbox);
+                .to(finalContractOutbox); */
 
         //receive a message in my inbox
         from(cpInboxAddress)

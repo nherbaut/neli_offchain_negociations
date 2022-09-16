@@ -19,7 +19,6 @@ public class CORoutes extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-
         from(coInboxAddress)//receive data from inbox
                 .log("received message ${body} from a CP")
                 .unmarshal().json(CPCOMessageNegotiation.class) // convert the json to a bean
@@ -28,7 +27,5 @@ public class CORoutes extends RouteBuilder {
                 .marshal().json() //convert back to json
                 .log("sending response message ${body} to CP")
                 .to(cpInboxAddress); //send it to CP
-
-
     }
 }

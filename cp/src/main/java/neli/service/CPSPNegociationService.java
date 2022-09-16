@@ -3,9 +3,14 @@ package neli.service;
 import neli.camel.MessageGateway;
 import neli.model.CPCOMessageNegotiation;
 import neli.model.CPSPMessageNegotiation;
+import neli.rest.client.BlockchainService;
+import org.apache.camel.model.Block;
+import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import java.util.HashMap;
+import java.util.Map;
 
 @ApplicationScoped
 public class CPSPNegociationService {
@@ -13,6 +18,10 @@ public class CPSPNegociationService {
 
     @Inject
     MessageGateway messageGateway;
+
+    @Inject
+    @RestClient
+    BlockchainService blockchainService;
 
     @Inject
     CPNegotiationService cpNegotiationService;
@@ -27,7 +36,7 @@ public class CPSPNegociationService {
     }
 
     public void sendProposalToSP(CPCOMessageNegotiation cpcoMessageNegociation, double price) {
-        CPSPMessageNegotiation cpspMessageNegociation = new CPSPMessageNegotiation(cpcoMessageNegociation.getContentId(), price);
+        CPSPMessageNegotiation cpspMessageNegociation = new CPSPMessageNegotiation(cpcoMessageNegociation.getContentID(), cpcoMessageNegociation.getOwner(), price);
         cpspMessageNegociation.setCpAgreed(true);
         cpspMessageNegociation.setCpcoMessageNegotiation(cpcoMessageNegociation);
         messageGateway.sendMessageSP(cpspMessageNegociation);
@@ -38,6 +47,14 @@ public class CPSPNegociationService {
         //for the moment, if the agreement is declined, we just increase the price and resubmit
         if (cpspMessageNegotiation.isSpAgreed() && cpspMessageNegotiation.isCpAgreed()) {
             cpNegotiationService.addSuccessfulNegotiation(cpspMessageNegotiation);
+
+            String contentID = cpspMessageNegotiation.getContentID();
+            String price = String.valueOf(cpspMessageNegotiation.getPrice());
+            Map<String, Object> jsonToSend = new HashMap<String, Object>(){{
+                put("contentID", contentID);
+                put("price", price);
+            }};
+            blockchainService.cpBuyService(jsonToSend);
         } else {
             this.sendProposalToSP(cpspMessageNegotiation.getCpcoMessageNegotiation(), cpspMessageNegotiation.getPrice() + 1.0);
         }
