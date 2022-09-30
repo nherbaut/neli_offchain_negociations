@@ -3,7 +3,7 @@ package neli.model;
 public class CPNegociationTrigger {
     String contentID;
     String owner;
-    double price;
+    int price;
 
     public CPNegociationTrigger() {
     }
@@ -22,15 +22,15 @@ public class CPNegociationTrigger {
 
     public void setOwner(String owner) { this.owner = owner; }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
-    public CPNegociationTrigger(String contentID, String owner, double price) {
+    public CPNegociationTrigger(String contentID, String owner, int price) {
         this.contentID = contentID;
         this.owner = owner;
         this.price = price;

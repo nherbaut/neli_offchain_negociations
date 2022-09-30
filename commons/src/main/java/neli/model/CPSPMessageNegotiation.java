@@ -3,7 +3,7 @@ package neli.model;
 public class CPSPMessageNegotiation {
     String contentID;
     String owner;
-    double price;
+    int price;
     boolean spAgreed;
     CPCOMessageNegotiation cpcoMessageNegotiation;
 
@@ -20,7 +20,7 @@ public class CPSPMessageNegotiation {
 
 
 
-    public CPSPMessageNegotiation(String contentID, String owner, double price) {
+    public CPSPMessageNegotiation(String contentID, String owner, int price) {
         this.contentID = contentID;
         this.owner = owner;
         this.price = price;
@@ -38,11 +38,11 @@ public class CPSPMessageNegotiation {
 
     public void setOwner(String owner) { this.owner = owner; }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

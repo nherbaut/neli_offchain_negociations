@@ -35,7 +35,7 @@ public class CPSPNegociationService {
         sendProposalToSP(cpcoMessageNegociation, 10);
     }
 
-    public void sendProposalToSP(CPCOMessageNegotiation cpcoMessageNegociation, double price) {
+    public void sendProposalToSP(CPCOMessageNegotiation cpcoMessageNegociation, int price) {
         CPSPMessageNegotiation cpspMessageNegociation = new CPSPMessageNegotiation(cpcoMessageNegociation.getContentID(), cpcoMessageNegociation.getOwner(), price);
         cpspMessageNegociation.setCpAgreed(true);
         cpspMessageNegociation.setCpcoMessageNegotiation(cpcoMessageNegociation);
@@ -56,7 +56,7 @@ public class CPSPNegociationService {
             }};
             blockchainService.cpBuyService(jsonToSend);
         } else {
-            this.sendProposalToSP(cpspMessageNegotiation.getCpcoMessageNegotiation(), cpspMessageNegotiation.getPrice() + 1.0);
+            this.sendProposalToSP(cpspMessageNegotiation.getCpcoMessageNegotiation(), cpspMessageNegotiation.getPrice() + 1);
         }
     }
 

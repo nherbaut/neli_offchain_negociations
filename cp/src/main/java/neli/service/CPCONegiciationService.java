@@ -46,7 +46,7 @@ public class CPCONegiciationService {
             blockchainService.cpBuyAccess(jsonToSend);
         } else {
             //if co did not agree, let's increase the price
-            cpcoMessageNegotiation.setPrice(cpcoMessageNegotiation.getPrice()+1.0);
+            cpcoMessageNegotiation.setPrice(cpcoMessageNegotiation.getPrice()+1);
             cpcoMessageNegotiation.setCpAgreed(true);
             messageGateway.sendMessageCO(cpcoMessageNegotiation);
         }
